@@ -9,12 +9,15 @@ const App = () => {
   useEffect(() => {
     axios.get('https://restcountries.com/v3.1/all').then((response) => {
       setCountries(response.data);
-      console.log(response.data[0]);
     });
   }, []);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
+  };
+
+  const handleShowClick = (countryName) => {
+    setFilter(countryName);
   };
 
   const filteredCountries = countries.filter((country) =>
@@ -23,7 +26,12 @@ const App = () => {
 
   const countryList = () =>
     filteredCountries.map((country) => (
-      <div key={country.name.common}>{country.name.common}</div>
+      <div key={country.name.common}>
+        {country.name.common}{' '}
+        <button onClick={() => handleShowClick(country.name.common)}>
+          show
+        </button>
+      </div>
     ));
 
   return (

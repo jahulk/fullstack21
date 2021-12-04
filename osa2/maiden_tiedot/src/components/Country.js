@@ -1,9 +1,9 @@
 import React from 'react';
+import Weather from './Weather';
 
 const Country = ({ country }) => {
   const { name, capital, population, languages, flags } = country;
-  const languages_array = Object.keys(languages).map((l) => languages[l]);
-  console.log(languages_array);
+  const languages_array = Object.keys(languages).map((key) => languages[key]);
 
   return (
     <div>
@@ -21,7 +21,9 @@ const Country = ({ country }) => {
         alt={name.common}
         style={{ width: '10%', height: '10%' }}
       />
+      <Weather city={capital[0]} />
     </div>
   );
 };
+
 export default Country;
